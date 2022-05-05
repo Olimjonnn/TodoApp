@@ -1,13 +1,10 @@
 from django.contrib import admin
-from django.urls import path
-from main.views import *
+from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("works/", WorksView.as_view()),
-    path("works/true/", WorkTrue.as_view()),
-    path("works/false/", WorkFalse.as_view()),
-]
-
-
+    path("", include('main.urls')),
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
